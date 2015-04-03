@@ -51,6 +51,7 @@
                     </div>
                 </div>
                 <script>
+					// Implement timer and user controls for image rotator
 					(function(){
 						$('.carousel-item').each(function(index) {
                             
