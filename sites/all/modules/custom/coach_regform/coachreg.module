@@ -1,0 +1,102 @@
+<?php
+/**
+ * @file
+ * Custom form for coach registration
+ */
+
+function coachreg_menu() {
+  $items = array();
+  $items['coachreg/form'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'Coach Registration Form', //page title
+    'description' => 'A form for college coaches to register to attend the IDT.',
+    'page callback' => 'drupal_get_form', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+    'page arguments' => array('coachreg_form'), //put the name of the form here
+    'access callback' => TRUE
+  );
+  return $items;
+}
+
+ 
+function coachreg_form() {
+  
+  return drupal_get_form('coachreg_fields_form');
+}
+
+function coachreg_fields_form($form_state){
+	
+  $form['name'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Name'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  );
+
+  $form['name']['firstname'] = array(
+    '#type' => 'textfield',
+	'#title' => 'First name: ',
+	'#required' => FALSE
+  );
+  
+  $form['name']['lastname'] = array(
+    '#type' => 'textfield',
+	'#title' => 'Last name: ',
+	'#required' => FALSE
+  );
+  
+  $form['name']['organization'] = array(
+    '#type' => 'textfield',
+	'#title' => 'College name: ',
+	'#required' => FALSE
+  );
+  
+  $form['name-two'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Name'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+
+  $form['name-two']['firstname'] = array(
+    '#type' => 'textfield',
+	'#title' => 'First name: ',
+	'#required' => FALSE
+  );
+  
+  $form['name-two']['lastname'] = array(
+    '#type' => 'textfield',
+	'#title' => 'Last name: ',
+	'#required' => FALSE
+  );
+  
+  $form['name-two']['organization'] = array(
+    '#type' => 'textfield',
+	'#title' => 'College name: ',
+	'#required' => FALSE
+  );
+  
+  $form['submit_button'] = array(
+    '#type' => 'submit',
+    '#value' => t('Register!'),
+  );
+  
+  return $form;
+}
+
+function coachreg_fields_form_validate($form, &$form_state){
+	$first_name = $form_state['values']['firstname'];
+	$last_name = $form_state['values']['lastname'];	
+}
+// Adds a submit handler/function to our form to send a successful 
+// completion message to the screen.
+function coachreg_fields_form_submit($form, &$form_state) {
+	
+	$form_state['rebuild'] = FALSE;
+
+	drupal_set_message(t('The form has been submitted.' . print_r($form_state)));
+	
+	$message = 'Register:' . '\r\n';
+	//$message = $form['name']['firstname'] . '\r\n';
+	//mail("dennis.m.mohr@gmail.com","Register Test","Test Message",null,'-fwebmaster@boulderidt.com');
+	//drupal_mail($form['name']['firstname'], 'register', 'dennis.m.mohr@gmail.com');
+
+}

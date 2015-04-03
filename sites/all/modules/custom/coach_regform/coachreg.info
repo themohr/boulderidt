@@ -1,0 +1,4 @@
+name = Coach Registration Form
+description = A form for College Coaches attending the tournament to register
+core = 7.x
+version 7.x-0.1-dev

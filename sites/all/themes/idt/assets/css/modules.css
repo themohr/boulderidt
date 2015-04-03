@@ -1,0 +1,57 @@
+/* CSS Document */
+.weather-custom {
+	padding: 10px 10px 0 10px;	
+}
+.weather-current {
+	margin-bottom: 10px;
+	border-bottom: 1px solid #000000;
+}
+.weather-current-item {
+	display: inline-block;
+}
+.weather-current-day {
+	width: 40%;
+	font-size: 21px;
+	line-height: 1.1em;	
+}
+.weather-current-temp {
+	font-size: 62px;
+	line-height: 1em;
+	color: #ED1C24;
+}
+.weather-forecast {
+	width: 23%;
+	line-height: 1em;
+	display: inline-block;
+	text-align: center;
+}
+.weather-forecast-day {
+	text-wrap: none;
+	overflow: hidden;	
+}
+.weather-forecast-temp {
+	color: #ED1C24;
+}
+
+.block-weather .content {
+	margin: 0;
+	padding: 0;	
+}
+/*
+ * Carousel
+*/
+.carousel{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	margin-top: 6%;
+	background-color: #FDFDFD;
+	border: 3px solid #FFFFFF;
+	box-shadow: 0 0 2px #000000;
+}
+.carousel-item {
+	display: none;	
+}
+.active {
+	display: block;	
+}

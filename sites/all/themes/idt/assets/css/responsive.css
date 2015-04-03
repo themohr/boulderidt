@@ -1,0 +1,42 @@
+/* CSS Document */
+@media only screen and (max-width: 1024px) {
+	.mobile-nav {
+		display: block;
+		position: absolute;
+		width: 131px;
+		left: 205px;
+	}
+	.main-nav ul{
+		position: absolute;
+		display: none;
+		background: #000000;
+		left: 180px;
+		top: 51px;
+	}
+	.main-nav li {
+		float: none;
+		display: block;	
+	}
+	.carousel img {
+		width: 100%;	
+	}
+	.meta-nav ul {
+		display: inline-block;
+		position: relative;
+		right: -60%;	
+	}
+	.open {
+		display: block !important;	
+	}	
+}
+@media only screen and (max-width: 475px) {
+	.main-promo h1 {
+		background: none;
+		height: 80px;
+		width: 100%;
+		padding: 0;	
+	}
+	.main-promo h2 {
+		height: 80px;	
+	}
+}

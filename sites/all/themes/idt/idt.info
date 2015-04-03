@@ -1,0 +1,19 @@
+name = IDT
+description = Boulder Independence Day Tournament Custom Website Design
+core = 7.x
+
+; CSS
+stylesheets[all][] = assets/css/bootstrap.min.css
+stylesheets[all][] = assets/css/core.css
+stylesheets[all][] = assets/css/modules.css
+stylesheets[all][] = assets/css/responsive.css
+
+; JS
+scripts[] = assets/js/jquery-v1.11.0-min.js
+
+; REGIONS
+regions[featured] = Featured
+regions[content] = Content
+regions[footer] = Footer
+regions[page_top] = Page Top
+regions[page_bottom] = Page Bottom
