@@ -42,29 +42,42 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-6">
-            	<div class="carousel">
-                	<div class="carousel-item active">
-	            		<img src="sites/all/themes/idt/assets/images/ASAScholar_I7C4465.png" />
+            	<div id="slideShow" class="carousel">
+                	<div class="carousel-item active" style="display: block;">
+	            		<img class="carousel-item-element" src="sites/all/themes/idt/assets/images/ASAScholar_I7C4465.png" />
                     </div>
-                    <div class="carousel-item">
-	            		<img src="sites/all/themes/idt/assets/images/rotator-catch.png" />
+                    <div class="carousel-item" style="display: none;">
+	            		<img class="carousel-item-element" src="sites/all/themes/idt/assets/images/rotator-catch.png" />
+                    </div>
+                     <div class="carousel-item" style="display: none;">
+	            		<img class="carousel-item-element" src="sites/all/themes/idt/assets/images/rotator-hit.png" />
                     </div>
                 </div>
                 <script>
 					// Implement timer and user controls for image rotator
-					(function(){
-						$('.carousel-item').each(function(index) {
-                            
-                        $(this).animate(200,function(){
-							console.log($(this));
-								if( $(this).hasClass('active') ){
-									$(this).removeClass('active');	
+						
+						var slides = document.getElementById("slideShow").getElementsByTagName("div");
+						
+						console.log(slides);
+						setInterval(function(){
+						
+							$(".carousel-item.active").each(function(index, element) {
+                                
+								if($(this).next().index() === -1){
+									$(this).removeClass("active").fadeOut(600,function(){
+										$('.carousel-item').eq(0).addClass("active").fadeIn(600);
+										});
+										
 								} else {
-									$(this).addClass('active');	
+									$(this).removeClass("active").fadeOut(600,function(){
+										$(this).next().addClass("active").fadeIn(600);
+										});	
 								}
-							});
-						});
-					})();
+								
+                            });
+							
+						},3500);
+						
 				</script>
             </div>
         </div>
