@@ -53,32 +53,7 @@
 	            		<img class="carousel-item-element" src="sites/all/themes/idt/assets/images/rotator-hit.png" />
                     </div>
                 </div>
-                <script>
-					// Implement timer and user controls for image rotator
-						
-						var slides = document.getElementById("slideShow").getElementsByTagName("div");
-						
-						console.log(slides);
-						setInterval(function(){
-						
-							$(".carousel-item.active").each(function(index, element) {
-                                
-								if($(this).next().index() === -1){
-									$(this).removeClass("active").fadeOut(600,function(){
-										$('.carousel-item').eq(0).addClass("active").fadeIn(600);
-										});
-										
-								} else {
-									$(this).removeClass("active").fadeOut(600,function(){
-										$(this).next().addClass("active").fadeIn(600);
-										});	
-								}
-								
-                            });
-							
-						},3500);
-						
-				</script>
+                <script src="sites/all/themes/idt/assets/js/rotator.js"></script>
             </div>
         </div>
     </div>
