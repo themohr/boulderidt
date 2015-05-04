@@ -2,8 +2,8 @@
 	<div id="metaNav" class="meta-nav bg-bar-dark">
     	<div class="container-fluid max-width-lg">
         	<div class="row">
-            	<div class="col-md-4 col-md-offset-8 col">
-                	<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
+            	<div class="col-md-4 col-md-offset-8">
+                	<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('class' => array('list-horizontal','pull-right')))); ?>
                     <?php $search_block = module_invoke('search','block_view','form'); ?>
                     <!-- <div id="search-box"><?php print render($search_block); ?></div> -->
                 </div>

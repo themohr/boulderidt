@@ -4,7 +4,7 @@
         	<div class="row">
             	<div class="col-md-4 col-md-offset-8 col">
                 	<ul class="list-horizontal">
-                    	<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
+                    	<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('class' => array('list-horizontal','pull-right')))); ?>
                         <?php $search_block = module_invoke('search','block_view','form'); ?>
                         <!-- <div id="search-box"><?php print render($search_block); ?></div> -->
                     </ul>
