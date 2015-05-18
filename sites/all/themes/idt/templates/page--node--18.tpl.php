@@ -48,29 +48,48 @@
         </div>
 		<div class="row">
         	<div class="col-md-8">
-            	<h1>Coach Registration Form</h1>
+            	<h1>All-Star Nomination Form</h1>
                 <?php 
-				/*echo '<pre>';
-				print_r( $_SERVER);
-				echo '</pre>';*/
 				if(!empty($_POST)) {
-				
 					@require_once("sites/all/themes/idt/templates/coach-reg.php");
 					process_form($_POST['form']);
 					
 				} else {
 					
-					echo "<p>Completing the registration form will help us determine the correct quantity of material to print and will ensure that you receive a copy of the tournament guide.</p>";
+					echo "<p>Each team is encouraged to nominate 3 players for the All-Star games.</p>";
 					
 				}
 				?>
                 <form name="nominate-form" id="nominate-form" action="/?<?php echo $_SERVER['QUERY_STRING']; ?>&nominate" method="post">
+                	<div id="info">
+                    <legend><strong>Team Information</strong></legend>
+                    <label for="team">Team </label> <input type="text" id="team" name="form[reg][team]" />
+                    <label for="age">Age</label> <input type="text" id="age" name="form[reg][age]" />
+                    <label for="coach">Head Coach</label> <input type="text" id="coach" name="form[reg][coach]" />
+                    </div>
+                    <hr />
                 	<div id="reg">
-                	<label for="name">Player Name: </label> <input type="text" id="name" name="form['reg']['name']" />
-                    <label for="uninumber">Uniform Number: </label> <input type="uninumber" id="uninumber" name="form['reg']['uninumber']" />
-                    <label for="team">Team Name: </label> <input type="text" id="team" name="form['reg']['team']" />
-                    <label for="position">Position: </label> <input type="text" id="position" name="form['reg']['position']" />
-                    <label for="gradyear">Graduation Year: </label> <input type="text" id="gradyear" name="form['reg']['gradyear']" />
+                    <legend><strong>Player 1</strong></legend>
+                	<label for="name">Player Name: </label> <input type="text" id="name" name="form[reg1][name]" />
+                    <label for="position">Position(s): </label> <input type="text" id="position" name="form[reg1][position]" />
+                    <label for="gradyear">Graduating Class: </label> <input type="text" id="gradyear" name="form[reg1][gradyear]" />
+                    <label for="uninumber">Uniform Number: </label> <input type="uninumber" id="uninumber" name="form[reg1][uninumber]" />
+                    </div>
+                    <hr />
+                    <div id="reg2">
+                    <legend><strong>Player 2</strong></legend>
+                    <label for="name">Player Name: </label> <input type="text" id="name" name="form[reg2][name]" />
+                    <label for="position">Position(s): </label> <input type="text" id="position" name="form[reg2][position]" />
+                    <label for="gradyear">Graduating Class: </label> <input type="text" id="gradyear" name="form[reg2][gradyear]" />
+                    <label for="uninumber">Uniform Number: </label> <input type="uninumber" id="uninumber" name="form[reg2][uninumber]" />
+                    </div>
+                    <hr />
+                    <div id="reg3">
+                    <legend><strong>Player 3</strong></legend>
+                    <label for="name">Player Name: </label> <input type="text" id="name" name="form[reg3][name]" />
+                    <label for="position">Position(s): </label> <input type="text" id="position" name="form[reg3][position]" />
+                    <label for="gradyear">Graduating Class: </label> <input type="text" id="gradyear" name="form[reg3][gradyear]" />
+                    <label for="uninumber">Uniform Number: </label> <input type="uninumber" id="uninumber" name="form[reg3][uninumber]" />
                     </div>
                     <br />
                     <br />

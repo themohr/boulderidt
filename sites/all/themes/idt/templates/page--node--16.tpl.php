@@ -47,6 +47,22 @@
 		<div class="row">
         	<div class="col-md-8">
             	<h1>Coach Registration Form</h1>
+                <h2>Test DB Connection</h2>
+                <?php
+					// DB info
+					
+					$host = 'localhost';
+					$user = 'costars_admin';
+					$password = '}5Gau2Pil(WZ';
+					$connect = mysqli_connect($host,$user,$password,'costars_drup1');
+					
+					if($connect){
+						echo "You are connected";
+					} else {
+						echo "NOT connected";	
+					}
+					
+				?>
                 <?php 
 				if(!empty($_POST)) {
 				
@@ -61,9 +77,9 @@
 				?>
                 <form name="reg-form" id="reg-form" action="/?<?php echo $_SERVER['QUERY_STRING']; ?>" method="post">
                 	<div id="reg">
-                	<label for="name">Full Name: </label> <input type="text" id="name" name="form['reg']['name']" />
-                    <label for="email">Email Address: </label> <input type="email" id="email" name="form['reg']['email']" />
-                    <label for="organization">School: </label> <input type="text" id="organization" name="form['reg']['organization']" />
+                	<label for="name">Full Name: </label> <input type="text" id="name" name="form[reg][name]" />
+                    <label for="email">Email Address: </label> <input type="email" id="email" name="form[reg][email]" />
+                    <label for="organization">School: </label> <input type="text" id="organization" name="form[reg][organization]" />
                     </div>
                     <br />
                     <br />
@@ -83,9 +99,9 @@
 					
 					if(clicks <= 5){
 						$('#reg').after('<hr><div id="reg' + clicks +'">'
-						+ '<label for="name">Full name:</label> <input type="text" id="name" name="form[\'reg' + clicks + '\'][\'name\']" />'
-                    	+ '<label for="email">Email Address:</label> <input type="email" id="email" name="form[\'reg' + clicks + '\'][\'email\']" />'
-                    	+ '<label for="organization">School:</label> <input type="text" id="organization" name="form[\'reg' + clicks + '\'][\'organization\']" />'
+						+ '<label for="name">Full name:</label> <input type="text" id="name" name="form[reg' + clicks + '][name]" />'
+                    	+ '<label for="email">Email Address:</label> <input type="email" id="email" name="form[reg' + clicks + '][email]" />'
+                    	+ '<label for="organization">School:</label> <input type="text" id="organization" name="form[reg' + clicks + '][organization]" />'
 						+ '</div>');
 					}
 					

@@ -1,11 +1,31 @@
 <?php
 function process_form($data) {
+	
+	// DB info
+	
+	if(substr($_SERVER['DOCUMENT_ROOT'],3,4) != 'wamp'){// Local access
+		$host = 'localhost';
+		$user = 'root';
+		$password = '';
+	} else { // Publish access
+		$host = 'localhost';
+		$user = 'costars_admin';
+		$password = '}5Gau2Pil(WZ';
+	}
+	$connect = mysqli_connect($host,$user,$password,'costars_drup1');
+	
+	if($connect){
+		echo "You are connected";
+	} else {
+		echo "NOT connected";	
+	}
+
 	// Initialize variables
 	$formName = '';
-	$mailto = "daniel.j.burns@att.net,coloradostars@gmail.com,dennis.m.mohr@gmail.com";
+	$mailto = "daniel.j.burns@att.net,silver506@aol.com,dennis.m.mohr@gmail.com";
 	$subject = "Boulder IDT - " . $pageName;
 	$headers = 'From: webmaster@boulderidt.com' . "\r\n" .
-               'Reply-To: webmaster@boulderidt.com' . "\r\n";
+               'Reply-To: webmaster@example.com' . "\r\n";
 	$messageType = '';
 	$message = '';
 	$count = 1;
@@ -28,17 +48,17 @@ function process_form($data) {
 	foreach($data as $formItem => $formItemValue){
 		if($messageType == 'Nominate'){
 			if($formItem != 'reg'){
-				$message .= "Nomination " . $count++ . "\r\n";
-				$message .= "Player Name: " . clean_text_field($data[$formItem]['name']) . "\r\n";
-				$message .= "Position: " . clean_text_field($data[$formItem]['position']) . "\r\n";
-				$message .= "Graduating Class: " . clean_text_field($data[$formItem]['gradyear']) . "\r\n";
-				$message .= "Uniform Number: " . clean_text_field($data[$formItem]['uninumber']) . "\r\n";
-			} 
+				echo $formItem . '<br>';
+				$message .= "Nomination " . $count++;
+			}
 		} else {
 			$message .= $messageType . " " . $count++ . "\r\n";
-			
-			foreach($formItemValue as $itemValue){
-				$message .= clean_text_field( $itemValue ) . "\r\n";
+		}
+		foreach($formItemValue as $itemValue){
+			if($messageType == 'Nominate'){
+				if($formItem != 'reg'){
+					$message .= clean_text_field( $itemValue ) . "\r\n";
+				}
 			}
 		}
 		$message .= "\r\n";
@@ -57,6 +77,39 @@ function process_form($data) {
 			default:
 		}
 
+		// Save Coach Registration record
+		if( $messageType == 'Register' ){
+			$reg = 0;
+			$inc = 0;
+			// MySQL connect and insert
+			if(!$connect) {
+				die("We are unable to process you're request at this time. " . mysql_error());	
+			}
+			$sql = "INSERT INTO drup_coach_register (name,email,school) VALUES ";
+			foreach($data as $formItem => $formItemValue){
+				$reg++;
+				$sql .= "(";
+				foreach($formItemValue as $itemValue){
+					$inc++;
+					$sql .= "'" . clean_text_field( $itemValue ) . "'";
+					if($inc % 3 !== 0) {
+						$sql .= ',';
+					}
+				}
+				$sql .= ")";
+				if($reg < count($data)) {
+					$sql .= ',';	
+				}
+			}
+			echo $sql;
+			
+			$retval = mysqli_query($connect,$sql);
+			
+			if(!$retval) { die('Unable to complete registration' . mysqli_error($connect));}
+			
+			mysqli_close($connect);
+		}
+		
 		if( substr($_SERVER['DOCUMENT_ROOT'],3,4) != 'wamp' ){ // If this is public environment
 			mail($mailto,$subject,$message,$headers);
 			
