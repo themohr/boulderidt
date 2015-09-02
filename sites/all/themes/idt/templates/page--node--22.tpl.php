@@ -50,7 +50,7 @@
                 <?php 
 				if(!empty($_POST)) {
 				
-					@require_once("sites/all/themes/idt/templates/coach-reg.php");
+					@require_once("sites/all/themes/idt/templates/coach-registration.php");
 					process_form($_POST['form']);
 					
 				} else {
@@ -82,7 +82,7 @@
 					clicks++;
 					
 					if(clicks <= 5){
-						$('#reg').after('<hr><div id="reg' + clicks +'">'
+						$('#reg').before('<hr><div id="reg' + clicks +'" style="margin-bottom: 30px;">'
 						+ '<label for="name">Full name:</label> <input type="text" id="name" name="form[reg' + clicks + '][name]" />'
                     	+ '<label for="email">Email Address:</label> <input type="email" id="email" name="form[reg' + clicks + '][email]" />'
                     	+ '<label for="organization">School:</label> <input type="text" id="organization" name="form[reg' + clicks + '][organization]" />'

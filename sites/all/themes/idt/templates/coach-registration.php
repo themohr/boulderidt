@@ -3,22 +3,16 @@ function process_form($data) {
 	
 	// DB info
 	
-	if(substr($_SERVER['DOCUMENT_ROOT'],3,4) != 'wamp'){// Local access
-		$host = 'localhost';
-		$user = 'root';
-		$password = '';
-	} else { // Publish access
+	if(substr($_SERVER['DOCUMENT_ROOT'],3,4) != 'wamp'){// Production
 		$host = 'localhost';
 		$user = 'costars_admin';
 		$password = '^54Q)Z#H%J?^';
+	} else { // LOCAL
+		$host = 'localhost';
+		$user = 'root';
+		$password = '';
 	}
 	$connect = mysqli_connect($host,$user,$password,'costars_drup1');
-	
-	if($connect){
-		echo "You are connected";
-	} else {
-		echo "NOT connected";	
-	}
 
 	// Initialize variables
 	$formName = '';
@@ -33,9 +27,11 @@ function process_form($data) {
 	if( substr($_SERVER['QUERY_STRING'],-8) == "nominate"){
 		$formName = "All Star Nomination";
 		$messageType = "Nominate";
+		echo $messageType;
 	} else {
 		$formName = "College Coach Registration";
 		$messageType = "Register";
+		echo $messageType;
 	}
 	
 	// Prepare values
@@ -85,7 +81,7 @@ function process_form($data) {
 			if(!$connect) {
 				die("We are unable to process you're request at this time. " . mysqli_connect_error());	
 			}
-			$sql = "INSERT INTO drup_coach_register (name,email,school) VALUES ";
+			$sql = "INSERT INTO drup_coach_register (name,email,school,date_registered) VALUES ";
 			foreach($data as $formItem => $formItemValue){
 				$reg++;
 				$sql .= "(";
@@ -96,12 +92,15 @@ function process_form($data) {
 						$sql .= ',';
 					}
 				}
-				$sql .= ")";
+				$sql .= ",NOW())";
 				if($reg < count($data)) {
 					$sql .= ',';	
 				}
 			}
 			echo $sql;
+			
+			echo "<h3>Thanks for registering to attend IDT!</h3>";
+				echo "<p>When you arrive at the tournament, visit the registration table and there will be a Tournament Guide with all the schedule and player information. We look forward to seeing you there!</p>";
 			
 			$retval = mysqli_query($connect,$sql);
 			

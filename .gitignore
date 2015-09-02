@@ -4,3 +4,7 @@ sites/*/settings*.php
 # Ignore paths that contain user-generated content.
 sites/*/files
 sites/*/private
+
+sites/all/themes/idt/templates/coach-reg_nodb.php
+sites/all/themes/idt/templates/coach-reg_update.php
+sites/all/themes/idt/templates/page--node--21.tpl.php
