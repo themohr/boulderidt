@@ -2,7 +2,6 @@
 function process_form($data) {
 	
 	// DB info
-	
 	if(substr($_SERVER['DOCUMENT_ROOT'],3,4) != 'wamp'){// Production
 		$host = 'localhost';
 		$user = 'costars_admin';
@@ -17,7 +16,7 @@ function process_form($data) {
 	// Initialize variables
 	$formName = '';
 	$mailto = "daniel.j.burns@att.net,coloradostars@gmail.com,dennis.m.mohr@gmail.com";
-	$subject = "Boulder IDT - " . $pageName;
+	$subject = "Boulder IDT - " . $formName;
 	$headers = 'From: webmaster@boulderidt.com' . "\r\n" .
                'Reply-To: webmaster@example.com' . "\r\n";
 	$messageType = '';
@@ -27,13 +26,12 @@ function process_form($data) {
 	if( substr($_SERVER['QUERY_STRING'],-8) == "nominate"){
 		$formName = "All Star Nomination";
 		$messageType = "Nominate";
-		echo $messageType;
 	} else {
 		$formName = "College Coach Registration";
 		$messageType = "Register";
-		echo $messageType;
 	}
 	
+	/* NOTE: Check the logic from ln 39 thru 64 */
 	// Prepare values
 	if($messageType == 'Nominate'){
 		
@@ -41,7 +39,9 @@ function process_form($data) {
 		$message .= 'Age: ' . $data['reg']['age'] .  "\r\n";
 		$message .= 'Coach: ' . $data['reg']['coach'] . "\r\n";
 	}
+	
 	foreach($data as $formItem => $formItemValue){
+	
 		if($messageType == 'Nominate'){
 			if($formItem != 'reg'){
 				echo $formItem . '<br>';
@@ -51,16 +51,15 @@ function process_form($data) {
 			$message .= $messageType . " " . $count++ . "\r\n";
 		}
 		foreach($formItemValue as $itemValue){
-			if($messageType == 'Nominate'){
-				if($formItem != 'reg'){
-					$message .= clean_text_field( $itemValue ) . "\r\n";
-				}
+			if($messageType == 'Register'){
+				$message .= clean_text_field( $itemValue ) . "\r\n";
 			}
 		}
-		$message .= "\r\n";
 	}
 	
 	if(!empty( $message )){ // Notify the user they are signed up
+		
+		$subject .= $formName;
 		
 		switch($messageType){
 			case 'Nominate':
@@ -97,7 +96,6 @@ function process_form($data) {
 					$sql .= ',';	
 				}
 			}
-			echo $sql;
 			
 			echo "<h3>Thanks for registering to attend IDT!</h3>";
 				echo "<p>When you arrive at the tournament, visit the registration table and there will be a Tournament Guide with all the schedule and player information. We look forward to seeing you there!</p>";
@@ -113,7 +111,8 @@ function process_form($data) {
 			mail($mailto,$subject,$message,$headers);
 			
 		} else { // Local environment, just display the contents of the message
-			echo $message;	
+			echo $message . "<br>";
+			echo $subject . "<br>";
 		}
 	} else { // If the message is empty, it's not worth sending an email.
 		echo '<p>We are currently unable to process your request</p>';	
