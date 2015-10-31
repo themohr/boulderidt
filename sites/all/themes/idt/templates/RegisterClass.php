@@ -4,42 +4,95 @@
 		private $regname;
 		private $regemail;
 		private $regorganization;
-		private $subject = "Coach Registration";
+		private $subject = "Boulder IDT";
 		private $sendto = "daniel.j.burns@att.net,coloradostars@gmail.com,dennis.m.mohr@gmail.com";
-		private $replyto = "webmaster@example.com";
+		private $replyto = "webmaster@boulderidt.com";
 		private $from = "webmaster@boulderidt.com";
 		private $text;
 		private $insert;
+		private $update;
 		private $db = "costars_drup1";
 		
-		public function processForm($data){
+		public function processForm($data,$formName){
+			$this->subject .= " - " . $formName;
+			$insertArray = array();
+			$updateArray = array();
 			$setCount = 0;
 			$itemCount = 0;
 			
+			/*
+			echo "<pre>";
+			print_r($data['form']);
+			echo "</pre>";
+			*/
+
 			foreach($data['form'] as $dataSet => $dataSetItems) {
-				$setCount++;
-				$this->insert .= "(";
-				foreach($dataSetItems as $dataSetItem => $item) {
-					$itemCount++;
-					$this->text .= $this->cleanTextField($item) . "\r\n"; // Email Message Text needs additional formatting
-					$this->insert .=  "'" . $this->cleanTextField($item) . "'"; // Insert into db
-					if($itemCount % 3 !== 0) {
-						$this->insert .= ',';
-					}
-				}
-				$this->insert .= ",NOW(),1)";
 				
-				if($setCount < count($data) - 1){
-					$this->insert .= ",";	
+				$setCount++;
+				
+				// This loop creates the email message
+				foreach($dataSetItems as $dataSetItem => $item) {
+					$this->text .= $this->cleanTextField($item) . "\r\n"; // Email Message Text needs additional formatting
 				}
+				
+				if($this->emailExists($dataSetItems['email'])){
+					echo "Increment registrations<br>";
+					echo $dataSetItems['email'] . "<br>";
+					$this->incrementRegistrations($this->dbConnect(),'email',$dataSetItems['email']);
+				} else {
+					$this->insert .= "(";
+					foreach($dataSetItems as $dataSetItem => $item) {
+						$itemCount++;
+						$this->insert .=  "'" . $this->cleanTextField($item) . "'"; // Insert into db
+							if($itemCount % 3 !== 0) {
+								$this->insert .= ',';
+							}
+					}
+		
+					$this->insert .= ",NOW(),1),";
+					/*
+					if($setCount < count($data['form'])){
+						$this->insert .= ",";	
+					}
+					*/	
+				}
+				
 			}
+			echo substr_replace($this->insert,"",-1);
 			
 			// Save the registration
-			echo $this->saveData($this->dbConnect(),$this->insert);
-			echo "<p>";
+			if(!empty($this->insert) && $this->insert !== "") {
+				$this->saveData($this->dbConnect(),substr_replace($this->insert,"",-1));
+			}
 			// Email to the organization
-			echo $this->sendEmail($this->subject,$this->sendto,$this->from,$this->replyto,$this->text);
+			
+			$this->sendEmail($this->subject,$this->sendto,$this->from,$this->replyto,$this->text);
+			// Display Message to the User
+			echo $this->formSuccess($formName);
 						
+		}
+		
+		/**
+		 *  Form Success Message
+		 */
+		public function formSuccess($formName){
+			 
+			 $message = "";
+
+			 switch($formName){
+				 case "College Coach Registration":
+				 	$message = "<h3>Thanks for registering to attend IDT!</h3>";
+					$message .= "<p>When you arrive at the tournament, visit the registration table and there will be a Tournament Guide with all the schedule and player information. We look forward to seeing you there!</p>";
+				 break;
+				 case "All Star Nomination":
+				 	$message = "<h3>Your Player Nomination has been submitted!</h3>";
+				 break;
+				 default:
+				 	"Form submission complete.";
+			 }
+			 
+			 return $message;
+			 
 		}
 		
 		/**
@@ -58,7 +111,7 @@
 			if( substr($_SERVER['DOCUMENT_ROOT'],3,4) != 'wamp' ){
 				mail($sendto,$subject,$message,$headers);
 			} else {
-				echo $sendto . " | " . $subject . " | " . $message . " | " . $headers;
+				echo "<p>" . $sendto . " | " . $subject . " | " . $message . " | " . $headers . "</p>";
 			}
 			
 		}
@@ -84,10 +137,10 @@
 		public function emailExists($email) {
 			
 			$valid = false;
-			
+
 			if($this->readData($this->dbConnect(),'email',$email) > 0){
-				$valid = true;	
-			}
+				$valid = true;
+			} 
 			
 			return $valid;
 			
@@ -102,10 +155,11 @@
 			$mysqli = new mysqli();
 			
 			$mysqli->connect($credentials['host'],$credentials['user'],$credentials['password'],$credentials['db']);
-			$sql = "SELECT " . $readColumn . " FROM drup_coach_register WHERE " . $readColumn . " = " . $readValue;
+			$sql = "SELECT " . $readColumn . " FROM drup_coach_register WHERE " . $readColumn . " = '" . $readValue . "'";
 
 			if($mysqli->connect_error) { 
 				die('Unable to complete operation ' . $mysqli->error);
+				return $result;
 			}
 			
 			// Return the number of rows that match
@@ -116,24 +170,27 @@
 			
 		}
 		
+		/**
+		 *  Increment the number of times a record has been registered
+		 *  @param credentials provides db connection
+		 *  @param column supplies the db column to search for the value in
+		 *  @param columnValue is the value to look for
+		 */
 		public function incrementRegistrations( $credentials, $column, $columnValue ) {
 		
 			$mysqli = new mysqli();
 			
 			$connect = $mysqli->connect($credentials['host'],$credentials['user'],$credentials['password'],$credentials['db']);
-			$sql = "UPDATE drup_coach_register SET register_quantity = register_quantity + 1 WHERE " . $column . " = " . $columnValue;
+			$sql = "UPDATE drup_coach_register SET register_quantity = register_quantity + 1 WHERE " . $column . " = '" . $columnValue . "'";
 			
 			if($mysql->connect_error){
 				die('Unable to complete operation ' . $mysqli->error);	
 			}
 			
-			echo $sql;
-			//$result = $mysqli->query($sql);
-			
 			if($mysqli->query($sql) === TRUE){
-				echo "Updated";
+				// Update Successful
 			} else {
-				echo "Something went wrong " . $mysqli->error;	
+				echo "Something went wrong " . $mysqli->error;	// The update failed
 			}
 			
 			$mysqli->close($connect);
@@ -152,24 +209,12 @@
 			$insertArray = explode(",",$insert);
 			$sql = "INSERT INTO drup_coach_register (name,email,school,date_registered,register_quantity) VALUES " . $insert;
 			
-			if($this->emailExists($insertArray[1])){
+			$retval = mysqli_query($connect,$sql);
 				
-				//Increment the registration quantity
-				echo "You have already registered for a previous event.";
-				$this->incrementRegistrations($this->dbConnect(),'email',$insertArray[1]);
-					
-			} else {
-			
-				$retval = mysqli_query($connect,$sql);
-				
-				if(!$retval) { 
-					die('Unable to complete registration' . mysqli_error($connect));
-				}
-				
-				echo "Thank you for registering to attend the tournament.";
+			if(!$retval) { 
+				die('Unable to complete registration' . mysqli_error($connect));
 			}
-			
-			
+				
 			mysqli_close($connect);
 			
 		}

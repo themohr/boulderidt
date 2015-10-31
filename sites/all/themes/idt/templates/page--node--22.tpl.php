@@ -52,11 +52,9 @@
 				
 					@require_once("sites/all/themes/idt/templates/RegisterClass.php");
 					$register = new Registration();
-					
-					$register->processForm($_POST); 
+					$register->processForm($_POST,"College Coach Registration"); 
 					
 				} else {
-					
 					echo "<p>Completing the registration form will help us determine the correct quantity of material to print and will ensure that you receive a copy of the tournament guide.</p>";
 					
 				}
