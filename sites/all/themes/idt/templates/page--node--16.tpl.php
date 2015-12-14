@@ -50,8 +50,9 @@
                 <?php 
 				if(!empty($_POST)) {
 				
-					@require_once("sites/all/themes/idt/templates/coach-reg.php");
-					process_form($_POST['form']);
+					@require_once("sites/all/themes/idt/templates/RegisterClass.php");
+					$register = new Registration();
+					$register->processForm($_POST,"College Coach Registration");
 					
 				} else {
 					
