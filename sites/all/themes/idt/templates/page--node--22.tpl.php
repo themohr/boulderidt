@@ -60,11 +60,13 @@
 				}
 				?>
                 <form name="reg-form" id="reg-form" action="/?<?php echo $_SERVER['QUERY_STRING']; ?>" method="post">
+                <div id="reg-items">
                 	<div id="reg1">
                 	<label for="name">Full Name: </label> <input type="text" id="name" name="form[reg][name]" />
                     <label for="email">Email Address: </label> <input type="email" id="email" name="form[reg][email]" />
                     <label for="organization">School: </label> <input type="text" id="organization" name="form[reg][organization]" />
                     </div>
+                </div>
                     <br />
                     <br />
                     <input type="button" id="addItem" value="Add Coach" />
@@ -82,7 +84,7 @@
 					clicks++;
 					console.log(clicks);
 					if(clicks <= 5){
-						$('#reg1').after('<hr><div id="reg' + clicks +'" style="margin-bottom: 30px;">'
+						$('#reg-items').append('<hr><div id="reg' + clicks +'" style="margin-bottom: 30px;">'
 						+ '<label for="name">Full name:</label> <input type="text" id="name" name="form[reg' + clicks + '][name]" />'
                     	+ '<label for="email">Email Address:</label> <input type="email" id="email" name="form[reg' + clicks + '][email]" />'
                     	+ '<label for="organization">School:</label> <input type="text" id="organization" name="form[reg' + clicks + '][organization]" />'
