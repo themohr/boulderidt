@@ -244,7 +244,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', end
  * Begin: .section-title
  * Styles the internal page section display
  */
-.section-title{
+.section-title {
 	font-family: 'Playball', cursive;
 	font-size: 24px;
 	color: #965619;
