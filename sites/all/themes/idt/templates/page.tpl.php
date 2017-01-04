@@ -2,12 +2,10 @@
 	<div id="metaNav" class="meta-nav bg-bar-dark">
     	<div class="container-fluid max-width-lg">
         	<div class="row">
-            	<div class="col-md-4 col-md-offset-8 col">
-                	<ul class="list-horizontal">
-                    	<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('class' => array('list-horizontal','pull-right')))); ?>
-                        <?php $search_block = module_invoke('search','block_view','form'); ?>
-                        <!-- <div id="search-box"><?php print render($search_block); ?></div> -->
-                    </ul>
+            	<div class="col-md-4 col-md-offset-8">
+                	<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('class' => array('list-horizontal','pull-right')))); ?>
+                    <?php $search_block = module_invoke('search','block_view','form'); ?>
+                    <!-- <div id="search-box"><?php print render($search_block); ?></div> -->
                 </div>
             </div>
         </div>
@@ -20,20 +18,19 @@
                     	<a href="/" class="logo-anchor"><img src="<?php print $logo; ?>" width="140" height="70" alt="IDT Logo"></a>
                     </div>
                 </div>
-                 <div class="col-md-10">
+                <div class="col-md-10">
                 	<div class="mobile-nav"><img src="sites/all/themes/idt/assets/css/assets/mobile-menu.png" width="75" height="50" alt="Louisville Slugger"></div>
-                	<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
+                	<ul class="list-horizontal"><li class="menu-812 first"><a href="/boulderidt/?q=node/6">Home</a></li>
+						<li class="menu-813"><a href="/boulderidt/?q=node/5" title="2016 Hotel Buyout Document">Hotels</a></li>
+						<li class="menu-811"><a href="/boulderidt/?q=node/3" title="2015 IDT Pools and Brackets (All Ages)">Pools/Brackets</a></li>
+						<li class="menu-814"><a href="/boulderidt/?q=node/7">Practice Games</a></li>
+						<li class="menu-815"><a href="/boulderidt/?q=node/8">All-Star Game</a></li>
+						<li class="menu-1190"><a href="/boulderidt/?q=node/24">College Coach Information</a></li>
+						<li class="menu-816"><a href="/boulderidt/?q=node/9">Attending Colleges</a></li>
+						
+					</ul>
+                	<?php // print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
                 </div>
-                <script>
-					$(".mobile-nav").click(function(){
-							console.log("Open the mobile nav");
-							if($('.main-nav ul').hasClass("open")){
-								$('.main-nav ul').removeClass("open");
-							} else {
-								$('.main-nav ul').addClass("open");	
-							}
-						});
-				</script>
             </div>
         </div>
 	</div>
@@ -62,6 +59,12 @@
             	<?php print render($page['content']); ?>
             </div>
             <div class="col-md-4">
+            	<div class="btn btn-fixed-width btn-primary">
+            		<a href="/boulderidt/?q=nade/20">Entry Form</a>
+            	</div>
+            	<div class="btn btn-fixed-width btn-primary">
+            		<a href="/boulderidt/?q=node/10">Tournament Results</a>
+            	</div>
             	<h3>Text follow idtweather to 40404</h3>
             	<div class="feature">
                 	<?php print render($page['featured']);?>

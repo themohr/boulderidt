@@ -36,7 +36,7 @@
 }
 .main-nav a{
 	display: block;
-	padding: 16px 5px;
+	padding: 16px 11px;
 	color: #F2F2F2 !important;
 	border-right: thin solid #000000;
 	border-left: thin solid #999999;
@@ -81,7 +81,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	background: none !important;
 }
 .max-width-lg {
-	max-width: 960px;
+	max-width: 1025px;
 }
 .bg-bar-dark {
 	background-color: #289CB3;
@@ -141,7 +141,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', end
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 24px;
 	color: #754C24;
-	margin-bottom: 0;
+	margin-bottom: 30px;
 	margin-top: 10px;
 }
 .main-promo h1{
@@ -291,4 +291,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', end
 }
 .list-horizontal li a:hover{
 	text-decoration: none;
+}
+
+/*
+ * Author: dmohr
+ * Begin: .btn
+ * Styles the button module
+ */
+.btn {
+	display: inline-block;
+}
+.btn-fixed-width {
+	width: 150px;
+}
+.btn-fixed-width a {
+	display: block;
+	text-align: center;
+}
+.btn-primary a {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #289CB3;
+	color: #FFFFFF;
+	font-size: 14px;
 }

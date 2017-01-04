@@ -20,7 +20,16 @@
                 </div>
                 <div class="col-md-10">
                 	<div class="mobile-nav"><img src="sites/all/themes/idt/assets/css/assets/mobile-menu.png" width="75" height="50" alt="Louisville Slugger"></div>
-                	<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
+                	<ul class="list-horizontal"><li class="menu-812 first"><a href="/boulderidt/?q=node/6">Home</a></li>
+						<li class="menu-813"><a href="/boulderidt/?q=node/5" title="2016 Hotel Buyout Document">Hotels</a></li>
+						<li class="menu-811"><a href="/boulderidt/?q=node/3" title="2015 IDT Pools and Brackets (All Ages)">Pools/Brackets</a></li>
+						<li class="menu-814"><a href="/boulderidt/?q=node/7">Practice Games</a></li>
+						<li class="menu-815"><a href="/boulderidt/?q=node/8">All-Star Game</a></li>
+						<li class="menu-1190"><a href="/boulderidt/?q=node/24">College Coach Information</a></li>
+						<li class="menu-816"><a href="/boulderidt/?q=node/9">Attending Colleges</a></li>
+						
+					</ul>
+                	<?php // print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
                 </div>
             </div>
         </div>
@@ -38,7 +47,32 @@
         <div class="row">
         	<div class="col-md-6 col-sm-6">
             	<div class="main-promo content-center">
-                	<?php print render($page['content']);?>
+            		<div class="region region-content">
+					    <div id="block-system-main" class="block block-system">
+					
+					    
+					  <div class="content">
+					    
+					  
+					        <h2><a href="/boulderidt/?q=node/2">IDT</a></h2>
+					        <p>Independence Day Tournament</p>
+					    <span property="dc:title" content="IDT" class="rdf-meta element-hidden"></span><span property="sioc:num_replies" content="0" datatype="xsd:integer" class="rdf-meta element-hidden"></span>
+					  
+					    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><h1 class="main-promo-primary">2017</h1>
+					<p class="main-promo-base">Jun 28 - July 2</p>
+					</div></div></div>
+					  <ul class="links inline"><li class="node-readmore first last"><a href="/boulderidt/?q=node/2" rel="tag" title="IDT">Read more<span class="element-invisible"> about IDT</span></a></li>
+					</ul>
+					    </div>
+					</div>
+				  </div>
+                	<?php // print render($page['content']);?>
+                	<div class="btn btn-fixed-width btn-primary">
+                		<a href="/boulderidt/?q=nade/20">Entry Form</a>
+                	</div>
+                	<div class="btn btn-fixed-width btn-primary">
+                		<a href="/boulderidt/?q=node/10">Tournament Results</a>
+                	</div>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6">
@@ -58,6 +92,11 @@
         </div>
     </div>
 	<div class="content container-fluid max-width-lg">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="content-center">Tournament Information</h1>
+			</div>
+		</div>
         <div class="row">
         	<div class="col-md-4">
             	<div class="feature">

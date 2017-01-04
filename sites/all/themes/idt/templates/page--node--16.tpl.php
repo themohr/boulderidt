@@ -19,7 +19,16 @@
                     </div>
                 </div>
                 <div class="col-md-10">
-                	<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
+                	<ul class="list-horizontal"><li class="menu-812 first"><a href="/boulderidt/?q=node/6">Home</a></li>
+						<li class="menu-813"><a href="/boulderidt/?q=node/5" title="2016 Hotel Buyout Document">Hotels</a></li>
+						<li class="menu-811"><a href="/boulderidt/?q=node/3" title="2015 IDT Pools and Brackets (All Ages)">Pools/Brackets</a></li>
+						<li class="menu-814"><a href="/boulderidt/?q=node/7">Practice Games</a></li>
+						<li class="menu-815"><a href="/boulderidt/?q=node/8">All-Star Game</a></li>
+						<li class="menu-1190"><a href="/boulderidt/?q=node/24">College Coach Information</a></li>
+						<li class="menu-816"><a href="/boulderidt/?q=node/9">Attending Colleges</a></li>
+						
+					</ul>
+                	<?php // print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
                 </div>
             </div>
         </div>
@@ -78,23 +87,14 @@
                 
                 
             </div>
-            <script>
-				var clicks = 0;
-				$('#addItem').click(function(){
-					
-					clicks++;
-					console.log(clicks);
-					if(clicks <= 5){
-						$('#reg-items').append('<hr><div id="reg' + clicks +'" style="margin-bottom: 30px;">'
-						+ '<label for="name">Full name:</label> <input type="text" id="name" name="form[reg' + clicks + '][name]" />'
-                    	+ '<label for="email">Email Address:</label> <input type="email" id="email" name="form[reg' + clicks + '][email]" />'
-                    	+ '<label for="organization">School:</label> <input type="text" id="organization" name="form[reg' + clicks + '][organization]" />'
-						+ '</div>');
-					}
-					
-				});
-			</script
-            ><div class="col-md-4">
+            <script src="sites/all/themes/idt/assets/js/form-fields.js"></script>
+			<div class="col-md-4">
+				<div class="btn btn-fixed-width btn-primary">
+            		<a href="/boulderidt/?q=nade/20">Entry Form</a>
+            	</div>
+            	<div class="btn btn-fixed-width btn-primary">
+            		<a href="/boulderidt/?q=node/10">Tournament Results</a>
+            	</div>
             	<h3>Text follow idtweather to 40404</h3>
             	<div class="feature">
                 	<?php print render($page['featured']);?>
