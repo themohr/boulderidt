@@ -21,7 +21,16 @@
                     </div>
                 </div>
                 <div class="col-md-10">
-                	<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
+                	<ul class="list-horizontal"><li class="menu-812 first"><a href="/boulderidt/?q=node/6">Home</a></li>
+						<li class="menu-813"><a href="/boulderidt/?q=node/5" title="2016 Hotel Buyout Document">Hotels</a></li>
+						<li class="menu-811"><a href="/boulderidt/?q=node/3" title="2015 IDT Pools and Brackets (All Ages)">Pools/Brackets</a></li>
+						<li class="menu-814"><a href="/boulderidt/?q=node/7">Practice Games</a></li>
+						<li class="menu-815"><a href="/boulderidt/?q=node/8">All-Star Game</a></li>
+						<li class="menu-1190"><a href="/boulderidt/?q=node/24">College Coach Information</a></li>
+						<li class="menu-816"><a href="/boulderidt/?q=node/9">Attending Colleges</a></li>
+						
+					</ul>
+                	<?php //print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
                 </div>
             </div>
         </div>
