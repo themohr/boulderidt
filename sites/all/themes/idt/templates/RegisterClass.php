@@ -13,6 +13,13 @@
 		private $update;
 		private $db = "costars_drup1";
 		
+		
+		/*
+		 * 1. Create getters and setters for field names
+		 * 2. Update methods to use getters/setters
+		 * 3. Update class to allow other forms to be processed (i.e., All-star nominations)
+		 */
+		
 		public function processForm($data,$formName){
 			$this->subject .= " - " . $formName;
 			$insertArray = array();
