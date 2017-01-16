@@ -29,7 +29,7 @@
 						<li class="menu-816"><a href="/boulderidt/?q=node/9">Attending Colleges</a></li>
 						
 					</ul>
-                	<?php // print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
+                	<?php //print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('class' => array('list-horizontal')))); ?>
                 </div>
             </div>
         </div>

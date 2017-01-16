@@ -3,7 +3,7 @@ $(document).ready(function(){
 	$('#addItem').click(function(e){
 		
 		clicks++;
-		console.log("e",e);
+		console.log("e", e);
 		if(clicks <= 5){
 			$('#reg-items').append('<hr><div id="reg' + clicks +'" style="margin-bottom: 30px;">'
 			+ '<label for="name">Full name:</label> <input type="text" id="name" name="form[reg' + clicks + '][name]" />'
